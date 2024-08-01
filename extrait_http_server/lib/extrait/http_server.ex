@@ -63,6 +63,6 @@ defmodule Extrait.HTTPServer do
   end
 
   defp responder do
-    Application.get_env(:extrait, :responder)
+    Application.get_env(:extrait_http_server, :responder)
   end
 end

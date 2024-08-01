@@ -20,8 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-extrait-*.tar
+plug_extrait_http_server-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
-.DS_Store
