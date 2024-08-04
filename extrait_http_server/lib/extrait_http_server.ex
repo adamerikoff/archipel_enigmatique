@@ -1,3 +1,0 @@
-defmodule ExtraitHttpServer do
-
-end
