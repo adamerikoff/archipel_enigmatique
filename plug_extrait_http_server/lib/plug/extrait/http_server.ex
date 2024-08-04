@@ -19,6 +19,16 @@ defmodule Plug.Extrait.HTTPServer do
     }
   end
 
+  def child_spec(plug: plug, port: port, options: options) do
+    Application.put_env(
+      :extrait_http_server,
+      :dispatcher,
+      {__MODULE__, [plug: plug, options: options]}
+    )
+
+    %{start: {__MODULE__, :start_linked_server, [port]}}
+  end
+
   def start_linked_server(port) do
     Task.start_link(fn -> Extrait.HTTPServer.start(port) end)
   end

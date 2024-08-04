@@ -28,13 +28,17 @@ defmodule Extrait.HTTPServer do
 
     Logger.info("Received HTTP request #{method} at #{path}")
 
-    spawn(__MODULE__, :respond, [req, method, path])
+    spawn(__MODULE__, :dispatch, [req, method, path])
 
     listen(sock)
   end
 
-  def respond(req, method, path) do
-    %Extrait.HTTPResponse{} = resp = responder().resp(req, method, path)
+  defp dispatcher do
+    Application.get_env(:extrait_http_server, :dispatcher)
+  end
+
+  def dispatch(req, method, path) do
+    %Extrait.HTTPResponse{} = resp = dispatcher().resp(req, method, path)
     resp_string = Extrait.HTTPResponse.to_string(resp)
 
     :gen_tcp.send(req, resp_string)
@@ -56,13 +60,10 @@ defmodule Extrait.HTTPServer do
   end
 
   defp ensure_configured! do
-    case responder() do
-      nil -> raise "No 'responder' configured for 'extrait_http_server'"
+    case dispatcher() do
+      nil -> raise "No 'dispatcher' configured for 'extrait_http_server'"
       _responder -> :ok
     end
   end
 
-  defp responder do
-    Application.get_env(:extrait_http_server, :responder)
-  end
 end
