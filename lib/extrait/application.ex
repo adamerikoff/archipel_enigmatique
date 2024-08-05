@@ -1,15 +1,11 @@
 defmodule Extrait.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
 
   use Application
 
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Extrait.Worker.start_link(arg)
-      # {Extrait.Worker, arg}
+      Extrait.Results,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -21,7 +21,7 @@ defmodule Extrait.Results do
     {:ok, %{}}
   end
 
-  def handle_cast({:add, path, hash}) do
+  def handle_cast({:add, path, hash}, results) do
     results =
       Map.update(
         results,
@@ -30,13 +30,14 @@ defmodule Extrait.Results do
         fn existing -> [path | existing] end
       )
 
-      {:no_reply, results}
+      {:noreply, results}
   end
 
-  def handle_caall(:find_duplicates, _from, results) do
+  def handle_call(:find_duplicates, _from, results) do
     {
       :reply,
-      hashes_with_more_than_one_path(results)
+      hashes_with_more_than_one_path(results),
+      results
     }
   end
 
