@@ -6,11 +6,14 @@ defmodule Extrait.Application do
   def start(_type, _args) do
     children = [
       Extrait.Results,
+      {Extrait.PathFinder, "."},
+      Extrait.WorkerSupervisor,
+      {Extrait.Gatherer, 1},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Extrait.Supervisor]
+    opts = [strategy: :one_for_all, name: Extrait.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
