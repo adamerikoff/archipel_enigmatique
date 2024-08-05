@@ -1,6 +1,6 @@
-defmodule Extrait do
+defmodule ArchipelEnigmatique do
   @moduledoc """
-  Documentation for `Extrait`.
+  Documentation for `ArchipelEnigmatique`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Extrait do
 
   ## Examples
 
-      iex> Extrait.hello()
+      iex> ArchipelEnigmatique.hello()
       :world
 
   """
