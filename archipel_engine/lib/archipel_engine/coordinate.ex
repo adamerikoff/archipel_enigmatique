@@ -1,4 +1,4 @@
-defmodule ArchipelEnigmatique.Coordinate do
+defmodule ArchipelEngine.Coordinate do
   alias __MODULE__
 
   @enforce_keys [:row, :col]

@@ -1,10 +1,10 @@
-defmodule ArchipelEnigmatique.GameSupervisor do
+defmodule ArchipelEngine.GameSupervisor do
   @moduledoc """
   Supervisor over the running games
   """
   use Supervisor
 
-  alias ArchipelEnigmatique.Game
+  alias ArchipelEngine.Game
 
   def start_link(_options), do:
     Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)

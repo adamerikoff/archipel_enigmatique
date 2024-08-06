@@ -1,5 +1,5 @@
-defmodule ArchipelEnigmatique.Archipel do
-  alias ArchipelEnigmatique.{Coordinate, Archipel}
+defmodule ArchipelEngine.Archipel do
+  alias ArchipelEngine.{Coordinate, Archipel}
 
   @archipel_types [:square, :dot, :atoll, :l_shape, :s_shape]
 

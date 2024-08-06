@@ -1,7 +1,7 @@
-defmodule ArchipelEnigmatique.Board do
+defmodule ArchipelEngine.Board do
 
   alias __MODULE__
-  alias ArchipelEnigmatique.{Coordinate, Archipel}
+  alias ArchipelEngine.{Coordinate, Archipel}
 
   def new()  do
     {:ok, %{}}

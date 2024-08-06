@@ -1,21 +1,21 @@
-# ArchipelEnigmatique
+# ArchipelEngine
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `archipel_enigmatique` to your list of dependencies in `mix.exs`:
+by adding `archipel_engine` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:archipel_enigmatique, "~> 0.1.0"}
+    {:archipel_engine, "~> 0.1.0"}
   ]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/archipel_enigmatique>.
+be found at <https://hexdocs.pm/archipel_engine>.
 

@@ -1,5 +1,5 @@
-defmodule ArchipelEnigmatique.Game do
-  alias ArchipelEnigmatique.{Board, Guesses, Rules}
+defmodule ArchipelEngine.Game do
+  alias ArchipelEngine.{Board, Guesses, Rules}
 
   use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
 
@@ -27,12 +27,12 @@ defmodule ArchipelEnigmatique.Game do
     GenServer.call(game, {:add_player, name})
   end
 
-  def position_island(game, player, key, row, col) when player in @players do
-    GenServer.call(game, {:position_island, player, key, row, col})
+  def position_archipel(game, player, key, row, col) when player in @players do
+    GenServer.call(game, {:position_archipel, player, key, row, col})
   end
 
-  def set_islands(game, player) when player in @players do
-    GenServer.call(game, {:set_islands, player})
+  def set_archipels(game, player) when player in @players do
+    GenServer.call(game, {:set_archipels, player})
   end
 
   def guess_coordinate(game, player, row, col) when player in @players do
@@ -96,16 +96,16 @@ defmodule ArchipelEnigmatique.Game do
     end
   end
 
-  def handle_call({:position_island, player, key, row, col}, _from, state_data) do
+  def handle_call({:position_archipel, player, key, row, col}, _from, state_data) do
     board = player_board(state_data, player)
     with  {:ok, rules} <-
-            Rules.check(state_data.rules, {:position_islands, player}),
+            Rules.check(state_data.rules, {:position_archipels, player}),
           {:ok, coordinate} <-
             Coordinate.new(row, col),
-          {:ok, island} <-
-            Island.new(key, coordinate),
+          {:ok, archipel} <-
+            Archipel.new(key, coordinate),
           %{} = board <-
-            Board.position_island(board, key, island)
+            Board.position_archipel(board, key, archipel)
     do
       state_data
       |> update_board(player, board)
@@ -115,22 +115,22 @@ defmodule ArchipelEnigmatique.Game do
       :error -> {:reply, :error, state_data}
       {:error, :invalid_coordinate} ->
         {:reply, {:error, :invalid_coordinate}, state_data}
-      {:error, :invalid_island_type} ->
-        {:reply, {:error, :invalid_island_type}, state_data}
+      {:error, :invalid_archipel_type} ->
+        {:reply, {:error, :invalid_archipel_type}, state_data}
     end
   end
 
-  def handle_call({:set_islands, player}, _from, state_data) do
+  def handle_call({:set_archipels, player}, _from, state_data) do
     board = player_board(state_data, player)
-    with {:ok, rules} <- Rules.check(state_data.rules, {:set_islands, player}),
-          true         <- Board.all_islands_positioned?(board)
+    with {:ok, rules} <- Rules.check(state_data.rules, {:set_archipels, player}),
+          true         <- Board.all_archipels_positioned?(board)
     do
       state_data
       |> update_rules(rules)
       |> reply_success(:ok)
     else
       :error -> {:reply, :error, state_data}
-      false  -> {:reply, {:error, :not_all_islands_positioned}, state_data}
+      false  -> {:reply, {:error, :not_all_archipels_positioned}, state_data}
     end
   end
 
@@ -143,7 +143,7 @@ defmodule ArchipelEnigmatique.Game do
             Rules.check(state_data.rules, {:guess_coordinate, player_key}),
           {:ok, coordinate} <-
             Coordinate.new(row, col),
-          {hit_or_miss, forested_island, win_status, opponent_board} <-
+          {hit_or_miss, forested_archipel, win_status, opponent_board} <-
             Board.guess(opponent_board, coordinate),
           {:ok, rules} <-
             Rules.check(rules, {:win_check, win_status})
@@ -152,7 +152,7 @@ defmodule ArchipelEnigmatique.Game do
       |> update_board(opponent_key, opponent_board)
       |> update_guesses(player_key, hit_or_miss, coordinate)
       |> update_rules(rules)
-      |> reply_success({hit_or_miss, forested_island, win_status})
+      |> reply_success({hit_or_miss, forested_archipel, win_status})
     else
       :error ->
         {:reply, :error, state_data}

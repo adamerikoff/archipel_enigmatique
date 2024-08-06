@@ -1,4 +1,4 @@
-defmodule ArchipelEnigmatique.Rules do
+defmodule ArchipelEngine.Rules do
   @moduledoc """
   State machine rules engine of the game
   """

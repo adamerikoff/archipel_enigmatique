@@ -1,5 +1,5 @@
-defmodule ArchipelEnigmatique.Guesses do
-  alias ArchipelEnigmatique.{Coordinate, Guesses}
+defmodule ArchipelEngine.Guesses do
+  alias ArchipelEngine.{Coordinate, Guesses}
 
   @enforce_keys [:hits, :misses]
   defstruct [:hits, :misses]
