@@ -8,8 +8,8 @@ defmodule ArchipelEnigmatique.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: ArchipelEnigmatique.Worker.start_link(arg)
-      # {ArchipelEnigmatique.Worker, arg}
+      {Registry, keys: :unique, name: Registry.Game},
+      ArchipelEnigmatique.GameSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

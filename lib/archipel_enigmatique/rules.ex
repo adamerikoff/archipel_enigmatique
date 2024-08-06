@@ -5,8 +5,8 @@ defmodule ArchipelEnigmatique.Rules do
   alias __MODULE__
 
   defstruct state: :initialized,
-            player1: :islands_not_set,
-            player2: :islands_not_set
+            player1: :archipels_not_set,
+            player2: :archipels_not_set
 
   def new do
     %Rules{}
@@ -16,16 +16,16 @@ defmodule ArchipelEnigmatique.Rules do
     {:ok, %Rules{rules | state: :players_set}}
   end
 
-  def check(%Rules{state: :players_set} = rules, {:position_islands, player}) do
+  def check(%Rules{state: :players_set} = rules, {:position_archipels, player}) do
     case Map.fetch!(rules, player) do
-      :islands_set -> :error
-      :islands_not_set -> {:ok, rules}
+      :archipels_set -> :error
+      :archipels_not_set -> {:ok, rules}
     end
   end
 
-  def check(%Rules{state: :players_set} = rules, {:set_islands, player}) do
-    rules = Map.put(rules, player, :islands_set)
-    case both_players_islands_set?(rules) do
+  def check(%Rules{state: :players_set} = rules, {:set_archipels, player}) do
+    rules = Map.put(rules, player, :archipels_set)
+    case both_players_archipels_set?(rules) do
       true -> {:ok, %Rules{rules | state: :player1_turn}}
       false -> {:ok, rules}
     end
@@ -54,11 +54,11 @@ defmodule ArchipelEnigmatique.Rules do
     end
   end
 
-  defp both_players_islands_set?(rules) do
+  defp both_players_archipels_set?(rules) do
     rules.player1
-    == :islands_set
+    == :archipels_set
     && rules.player2
-    == :islands_set
+    == :archipels_set
   end
 
 end

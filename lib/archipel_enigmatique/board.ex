@@ -1,4 +1,6 @@
 defmodule ArchipelEnigmatique.Board do
+
+  alias __MODULE__
   alias ArchipelEnigmatique.{Coordinate, Archipel}
 
   def new()  do
