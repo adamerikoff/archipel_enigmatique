@@ -20,7 +20,7 @@ defmodule ArchipelEnigmatique.Board do
     )
   end
 
-  def all_archipel_positioned?(board) do
+  def all_archipels_positioned?(board) do
     Enum.all?(Archipel.types, &(Map.has_key?(board, &1)))
   end
 
