@@ -1,5 +1,5 @@
 defmodule ArchipelEngine.Game do
-  alias ArchipelEngine.{Board, Guesses, Rules}
+  alias ArchipelEngine.{Board, Guesses, Rules, Coordinate, Archipel}
 
   use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
 
