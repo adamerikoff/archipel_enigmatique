@@ -2,10 +2,11 @@ import Config
 
 # Configure your database
 config :core, Core.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "dev",
+  password: "dev",
   hostname: "localhost",
-  database: "core_dev",
+  port: 5432,
+  database: "renonculeDB",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -23,7 +24,7 @@ config :core, CoreWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "Zx3zaAPHm+QfWKCHz76gatqpHYw8UYemM64HiJkGqkKBy5Cd7MRYP91q6vZLKfFc",
+  secret_key_base: "4+H9UUeaPiAiorNPIsttOWvpBHQPOCQ4cLT6IAci1H/ppOXaxV/7x8ZsEdk5fOj9",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:core, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:core, ~w(--watch)]}

@@ -17,7 +17,7 @@ config :core, Core.Repo,
 # you can enable the server option below.
 config :core, CoreWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "vu2ca67sspSuGtwnBaqj5Ki3Mc/NBgvXwVpdooCWTH22B86O/h2MuNLZTw3qg1ep",
+  secret_key_base: "2NNb8hPXU/cGu2NNxcopMrqMcEGGnlkAZjtf7cUPY97e0kR1UcBa8Q6tX63m/5MZ",
   server: false
 
 # In test we don't send emails

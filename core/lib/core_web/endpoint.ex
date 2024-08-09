@@ -7,7 +7,7 @@ defmodule CoreWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_core_key",
-    signing_salt: "fPtko8ij",
+    signing_salt: "iIsqIIht",
     same_site: "Lax"
   ]
 
