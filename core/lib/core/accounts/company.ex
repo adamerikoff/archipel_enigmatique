@@ -6,6 +6,8 @@ defmodule Core.Accounts.Company do
     field :username, :string
     field :password_hash, :string
 
+    has_many :employees, Core.Accounts.Employee
+
     timestamps(type: :utc_datetime)
   end
 
