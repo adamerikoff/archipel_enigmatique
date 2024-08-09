@@ -4,7 +4,6 @@ defmodule Core.Inventory.Catalogue do
 
   schema "catalogues" do
     field :name, :string
-    field :department_id, :id
 
     belongs_to :department, Core.Inventory.Department
     has_many :products, Core.Inventory.Product

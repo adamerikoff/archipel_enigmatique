@@ -7,6 +7,7 @@ defmodule Core.Accounts.Company do
     field :password_hash, :string
 
     has_many :employees, Core.Accounts.Employee
+    has_many :departments, Core.Inventory.Department
 
     timestamps(type: :utc_datetime)
   end

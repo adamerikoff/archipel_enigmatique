@@ -6,11 +6,9 @@ defmodule Core.Inventory.Product do
     field :name, :string
     field :quantity, :float
     field :purchase_price, :decimal
-    field :type, :id
-    field :catalogue_id, :id
 
-    belongs_to :catalogue, Core.Accounts.Catalogue
-    belongs_to :product_types, Core.Accounts.ProductType
+    belongs_to :catalogue, Core.Inventory.Catalogue
+    belongs_to :product_type, Core.Inventory.ProductType
 
     timestamps(type: :utc_datetime)
   end
@@ -18,8 +16,9 @@ defmodule Core.Inventory.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:name, :quantity, :purchase_price, :catalogue_id])
-    |> validate_required([:name, :quantity, :purchase_price, :catalogue_id])
+    |> cast(attrs, [:name, :quantity, :purchase_price, :catalogue_id, :product_type])  # Updated field name
+    |> validate_required([:name, :quantity, :purchase_price, :catalogue_id, :product_type])  # Updated field name
     |> foreign_key_constraint(:catalogue_id)
+    |> foreign_key_constraint(:product_type)  # Updated FK constraint
   end
 end

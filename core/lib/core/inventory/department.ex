@@ -5,7 +5,6 @@ defmodule Core.Inventory.Department do
   schema "departments" do
     field :name, :string
     field :address, :string
-    field :company_id, :id
 
     belongs_to :company, Core.Accounts.Company
 

@@ -5,7 +5,6 @@ defmodule Core.Accounts.Employee do
   schema "employees" do
     field :username, :string
     field :password_hash, :string
-    field :company_id, :id
 
     belongs_to :company, Core.Accounts.Company
 
